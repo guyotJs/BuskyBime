@@ -4,7 +4,9 @@
   import Footer from './elements/Footer.svelte';
   let now = new Date(),year, month, day;
   let dateString;
-  dateString = (now.getMonth()+1)+'/'+now.getDate();
+  dateString = (now.getMonth()+1)+'/'+(now.getDate());
+  let texts = ['busky bime','you wasted electricity for me to tell you it\'s wednesday','duhh','hmm it\'s wednesday i wonder what TT it is','bro it\'s wednesday']
+  
 </script>
 <style>
   :global(body){
