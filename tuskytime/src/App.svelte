@@ -9,25 +9,36 @@
   :global(body){
     background-color: #9db6f8;
     margin:0;
+    font-family: serif!important;
   }
   .boing{
     text-align: center;
+    margin-top: 50px;
+  }
+  lg{
+    font-size:100px;
+  }
+  m{
+    font-size:large;
   }
 </style>
 <main>
   <Header/>
   <div class="boing">
     <br/>
-    {dateString}<br/>
+    {dateString}<br/><br/>
     TODAY IS
     {#if tt[dateString].day == "B"}
       A
     {:else}
       AN
     {/if}<br/>
-    {tt[dateString].day}<br/>
+    <lg><b>{tt[dateString].day}</b><br/></lg>
     DAY<br/>
     AND IT'S TUSKY TIME<br/>
-    {tt[dateString].TT}
+    <lg><b>{tt[dateString].TT}</b></lg><br/>
+    {#if tt[dateString].TT == "Advisory"}
+       <b><m>busky bime</m></b>
+    {/if}
   </div>
 </main>
