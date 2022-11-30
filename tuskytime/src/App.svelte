@@ -6,7 +6,11 @@
   let dateString;
   dateString = (now.getMonth()+1)+'/'+(now.getDate());
   let texts = ['busky bime','you wasted electricity for me to tell you it\'s wednesday','duhh','hmm it\'s wednesday i wonder what TT it is','bro it\'s wednesday']
-  
+  function random(max){
+    return Math.floor(Math.random() * max);
+  }
+  const ttt = random(5);
+  let textActive = texts[ttt]; 
 </script>
 <style>
   :global(body){
@@ -41,7 +45,7 @@
     AND IT'S TUSKY TIME<br/>
     <lg><b>{tt[dateString].TT}</b></lg><br/>
     {#if tt[dateString].TT == "Advisory"}
-       <b><m>busky bime</m></b>
+       <b><m>{textActive}</m></b>
     {/if}
   </div>
   <Footer/>
