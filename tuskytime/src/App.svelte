@@ -1,6 +1,7 @@
 <script>
   import tt from './elements/tt.json';
   import Header from './elements/Header.svelte';
+  import Footer from './elements/Footer.svelte';
   let now = new Date(),year, month, day;
   let dateString;
   dateString = (now.getMonth()+1)+'/'+now.getDate();
@@ -41,4 +42,5 @@
        <b><m>busky bime</m></b>
     {/if}
   </div>
+  <Footer/>
 </main>
