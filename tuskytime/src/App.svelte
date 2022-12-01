@@ -7,9 +7,7 @@
   let dateString;
   dateString = (now.getMonth()+1)+'/'+(now.getDate());
   let texts = ['busky bime','you wasted electricity for me to tell you it\'s wednesday','duhh','hmm it\'s wednesday i wonder what TT it is','bro it\'s wednesday']
-  function random(max){
-    return Math.floor(Math.random() * max);
-  }
+  function random(max){return Math.floor(Math.random() * max);}
   const ttt = random(5);
   let textActive = texts[ttt]; 
 </script>
@@ -28,12 +26,9 @@
     text-align: center;
     margin-top: 50px;
   }
-  lg{
-    font-size:100px;
-  }
-  m{
-    font-size:large;
-  }
+  lg{font-size:100px;}
+  m{font-size:large;}
+  advise{font-size: 70px;}
 </style>
 <main>
   <Header/>
@@ -50,9 +45,11 @@
       <lg><b>{tt[dateString].day}</b><br/></lg>
       DAY<br/>
       AND IT'S TUSKY TIME<br/>
-      <lg><b>{tt[dateString].TT}</b></lg><br/>
       {#if tt[dateString].TT == "Advisory"}
+        <advise><b>{tt[dateString].TT}</b></advise><br/>
         <b><m>{textActive}</m></b>
+        {:else}
+        <lg><b>{tt[dateString].TT}</b></lg><br/>
       {/if}
       {:else}
       <lg><b>There is no school buffoon</b></lg><br/>
