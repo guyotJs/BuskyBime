@@ -3,10 +3,7 @@
 </script>
 <style>
     .foot{
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%);
+        text-align: center;
     }
     p{
         color: #6882d3;

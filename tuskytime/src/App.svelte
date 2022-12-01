@@ -1,5 +1,6 @@
 <script>
   import tt from './elements/tt.json';
+  import DeviceDetector from "svelte-device-detector";
   import Header from './elements/Header.svelte';
   import Footer from './elements/Footer.svelte';
   let now = new Date(),year, month, day;
@@ -13,6 +14,11 @@
   let textActive = texts[ttt]; 
 </script>
 <style>
+  .box{
+    width:0.1px;
+    height:70px;
+    opacity:0.01;
+  }
   :global(body){
     background-color: #9db6f8;
     margin:0;
@@ -32,21 +38,29 @@
 <main>
   <Header/>
   <div class="boing">
-    <br/>
-    {dateString}<br/><br/>
-    TODAY IS
-    {#if tt[dateString].day == "B"}
-      A
-    {:else}
-      AN
-    {/if}<br/>
-    <lg><b>{tt[dateString].day}</b><br/></lg>
-    DAY<br/>
-    AND IT'S TUSKY TIME<br/>
-    <lg><b>{tt[dateString].TT}</b></lg><br/>
-    {#if tt[dateString].TT == "Advisory"}
-       <b><m>{textActive}</m></b>
+    {#if tt[dateString] != undefined}
+      <br/>
+      {dateString}<br/><br/>
+      TODAY IS
+      {#if tt[dateString].day == "B"}
+          A
+        {:else}
+          AN
+      {/if}<br/>
+      <lg><b>{tt[dateString].day}</b><br/></lg>
+      DAY<br/>
+      AND IT'S TUSKY TIME<br/>
+      <lg><b>{tt[dateString].TT}</b></lg><br/>
+      {#if tt[dateString].TT == "Advisory"}
+        <b><m>{textActive}</m></b>
+      {/if}
+      {:else}
+      <lg><b>There is no school buffoon</b></lg><br/>
+      <img src="https://ironon.github.io/static/media/baboon.b4aa7231a1f98ba4fd1e.jpg" width="400px" alt="you buffoon"/>
     {/if}
   </div>
+  <DeviceDetector showInBrowser="chrome" showInDevice="desktop">
+    <div class="box"></div>
+  </DeviceDetector>
   <Footer/>
 </main>
