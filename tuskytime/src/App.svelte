@@ -29,6 +29,7 @@
   lg{font-size:100px;}
   m{font-size:large;}
   advise{font-size: 70px;}
+  mobile{font-size: 50px;}
 </style>
 <main>
   <Header/>
@@ -52,8 +53,14 @@
         <lg><b>{tt[dateString].TT}</b></lg><br/>
       {/if}
       {:else}
-      <lg><b>There is no school buffoon</b></lg><br/>
-      <img src="https://ironon.github.io/static/media/baboon.b4aa7231a1f98ba4fd1e.jpg" width="400px" alt="you buffoon"/>
+      <DeviceDetector showInDevice="desktop">
+        <lg><b>There is no school buffoon</b></lg><br/>
+      </DeviceDetector>
+      <DeviceDetector showInDevice="mobile">
+        <mobile><b>There is no school buffoon</b></mobile><br/>
+      </DeviceDetector>
+      <img src="https://ironon.github.io/static/media/baboon.b4aa7231a1f98ba4fd1e.jpg" width="400px" alt="you buffoon"/><br/>
+      <m>(You rn)</m>
     {/if}
   </div>
   <DeviceDetector showInBrowser="chrome" showInDevice="desktop">
