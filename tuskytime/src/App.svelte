@@ -107,10 +107,10 @@
     {/if}
   </div>
   <DeviceDetector showInDevice="desktop">
-    <button id="changeday" on:click={offsetL}>&gt</button>
+    <button id="changeday" on:click={offsetR}>&gt</button>
   </DeviceDetector>
   <DeviceDetector showInDevice="mobile">
-    <button id="changedaymobile" on:click={offsetL}>&gt</button>
+    <button id="changedaymobile" on:click={offsetR}>&gt</button>
   </DeviceDetector>
 </main>
 <DeviceDetector showInBrowser="chrome" showInDevice="desktop">
