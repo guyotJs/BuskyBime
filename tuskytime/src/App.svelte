@@ -3,20 +3,22 @@
   import DeviceDetector from "svelte-device-detector";
   import Header from './elements/Header.svelte';
   import Footer from './elements/Footer.svelte';
-  let now = new Date(),year, month, day;
   let dateString;
   let offset = 0;
-  dateString = (now.getMonth()+1)+'/'+(now.getDate()+offset);
+  const millisecondsInDay = 8.64e+7
+  let date = new Date(Date.now() + offset * millisecondsInDay)
   let texts = ['busky bime','you wasted electricity for me to tell you it\'s wednesday','duhh','hmm it\'s wednesday i wonder what TT it is','bro it\'s wednesday']
   function random(max){return Math.floor(Math.random() * max);}
-  const ttt = random(5);
+  let ttt = random(5);
   let textActive = texts[ttt]; 
-  function offsetR(){
-    offset += 1;
-    dateString = (now.getMonth()+1)+'/'+(now.getDate()+offset);}
-  function offsetL(){
-    offset -= 1;
-    dateString = (now.getMonth()+1)+'/'+(now.getDate()+offset);}
+  function offsetR(){offset += 1;date = new Date(Date.now() + offset * millisecondsInDay);dateString=getDate(date);}
+  function offsetL(){offset -= 1;date = new Date(Date.now() + offset * millisecondsInDay);dateString=getDate(date);}
+  function getDate(gotDate) {
+    var formattedDate = ('' + gotDate.getDate()).slice(-2);
+    var formattedMonth = ('' + (gotDate.getMonth() + 1)).slice(-2);
+    return formattedMonth + '/' + formattedDate
+  }
+  dateString = getDate(date)
 </script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
