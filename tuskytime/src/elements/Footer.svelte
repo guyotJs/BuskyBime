@@ -10,5 +10,5 @@
     }
 </style>
 <main>
-    <p class="foot">not affiliated with LCPS or Tuscarora, A recreation of <a href="https://tuskytime.org">Tuskytime.org</a> by, Easton Snow</p>
+    <p class="foot">not affiliated with LCPS or Tuscarora, A recreation of <a href="https://tuskytime.org">Tuskytime.org</a> by, Easton Snow in <em>Svelte</em></p>
 </main>
