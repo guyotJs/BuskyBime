@@ -1,7 +1,6 @@
 <script>
 
 </script>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
     .bg{
         background-color: #6882d3;

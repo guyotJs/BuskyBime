@@ -5,12 +5,20 @@
   import Footer from './elements/Footer.svelte';
   let now = new Date(),year, month, day;
   let dateString;
-  dateString = (now.getMonth()+1)+'/'+(now.getDate());
+  let offset = 0;
+  dateString = (now.getMonth()+1)+'/'+(now.getDate()+offset);
   let texts = ['busky bime','you wasted electricity for me to tell you it\'s wednesday','duhh','hmm it\'s wednesday i wonder what TT it is','bro it\'s wednesday']
   function random(max){return Math.floor(Math.random() * max);}
   const ttt = random(5);
   let textActive = texts[ttt]; 
+  function offsetR(){
+    offset += 1;
+    dateString = (now.getMonth()+1)+'/'+(now.getDate()+offset);}
+  function offsetL(){
+    offset -= 1;
+    dateString = (now.getMonth()+1)+'/'+(now.getDate()+offset);}
 </script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
   .box{
     width:0.1px;
@@ -30,9 +38,27 @@
   m{font-size:large;}
   advise{font-size: 70px;}
   mobile{font-size: 50px;}
+  buffoonDesktop{font-size: 70px;}
+  #changeday {
+    height: 3rem;
+    width: 3rem;
+    background-color: var(--lighter-main);
+    box-shadow: 0rem 0.3rem;
+    color: var(--main);
+    font-size: 1.5rem;
+    align-self: flex-start;
+    margin: 100px;
+  }
+  main{    
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+  }
 </style>
+<Header/>
 <main>
-  <Header/>
+  <button id="changeday" on:click={offsetL}>&lt</button>
   <div class="boing">
     {#if tt[dateString] != undefined}
       <br/>
@@ -54,7 +80,7 @@
       {/if}
       {:else}
       <DeviceDetector showInDevice="desktop">
-        <lg><b>There is no school buffoon</b></lg><br/>
+        <buffoonDesktop><b>There is no school buffoon</b></buffoonDesktop><br/>
       </DeviceDetector>
       <DeviceDetector showInDevice="mobile">
         <mobile><b>There is no school buffoon</b></mobile><br/>
@@ -63,8 +89,9 @@
       <m>(You rn)</m>
     {/if}
   </div>
-  <DeviceDetector showInBrowser="chrome" showInDevice="desktop">
-    <div class="box"></div>
-  </DeviceDetector>
-  <Footer/>
+  <button id="changeday" on:click={offsetR}>&gt</button>
 </main>
+<DeviceDetector showInBrowser="chrome" showInDevice="desktop">
+  <div class="box"></div>
+</DeviceDetector>
+<Footer/>
