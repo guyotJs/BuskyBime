@@ -51,6 +51,16 @@
     align-self: flex-start;
     margin: 100px;
   }
+  #changedaymobile {
+    height: 3rem;
+    width: 3rem;
+    background-color: var(--lighter-main);
+    box-shadow: 0rem 0.3rem;
+    color: var(--main);
+    font-size: 1.5rem;
+    align-self: flex-start;
+    margin: 30px;
+  }
   main{    
     display: flex;
     justify-content: center;
@@ -60,7 +70,12 @@
 </style>
 <Header/>
 <main>
-  <button id="changeday" on:click={offsetL}>&lt</button>
+  <DeviceDetector showInDevice="desktop">
+    <button id="changeday" on:click={offsetL}>&lt</button>
+  </DeviceDetector>
+  <DeviceDetector showInDevice="mobile">
+    <button id="changeday" on:click={offsetL}>&lt</button>
+  </DeviceDetector>
   <div class="boing">
     {#if tt[dateString] != undefined}
       <br/>
@@ -91,7 +106,12 @@
       <m>(You rn)</m>
     {/if}
   </div>
-  <button id="changeday" on:click={offsetR}>&gt</button>
+  <DeviceDetector showInDevice="desktop">
+    <button id="changeday" on:click={offsetL}>&gt</button>
+  </DeviceDetector>
+  <DeviceDetector showInDevice="mobile">
+    <button id="changedaymobile" on:click={offsetL}>&gt</button>
+  </DeviceDetector>
 </main>
 <DeviceDetector showInBrowser="chrome" showInDevice="desktop">
   <div class="box"></div>
