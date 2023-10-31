@@ -97,6 +97,7 @@
       {/if}
       {:else}
       <DeviceDetector showInDevice="desktop">
+        {dateString}<br/>
         <buffoonDesktop><b>There is no school buffoon</b></buffoonDesktop><br/>
       </DeviceDetector>
       <DeviceDetector showInDevice="mobile">

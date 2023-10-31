@@ -13,6 +13,6 @@
 </style>
 <main>
     <div class="bg w3-row">
-        <img src="https://tuskytime.org/_nuxt/tuskylogo.9abafe6e.png" alt="oy" width="80px"/><b>TUSCARORA TIME</b>
+        <img src="https://tuskytime.org/assets/tuskylogo.png" alt="oy" width="80px"/><b>TUSCARORA TIME</b>
     </div>
 </main>
