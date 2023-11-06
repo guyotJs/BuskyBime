@@ -1,6 +1,5 @@
 <script>
   import tt from './elements/tt.json';
-  import DeviceDetector from "svelte-device-detector";
   import Header from './elements/Header.svelte';
   import Footer from './elements/Footer.svelte';
   let dateString;
@@ -18,7 +17,15 @@
     var formattedMonth = ('' + (gotDate.getMonth() + 1)).slice(-2);
     return formattedMonth + '/' + formattedDate
   }
+
   dateString = getDate(date)
+  var arrayDay = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const dd= new Date();
+  let held = dd.getDay();
+  let mobile = false;
+  if(window.innerWidth < window.innerHeight){
+    mobile = true;
+  }
 </script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
@@ -58,8 +65,6 @@
     box-shadow: 0rem 0.3rem;
     color: var(--main);
     font-size: 1.5rem;
-    align-self: flex-start;
-    margin: 30px;
   }
   main{    
     display: flex;
@@ -70,16 +75,15 @@
 </style>
 <Header/>
 <main>
-  <DeviceDetector showInDevice="desktop">
-    <button id="changeday" on:click={offsetL}>&lt</button>
-  </DeviceDetector>
-  <DeviceDetector showInDevice="mobile">
-    <button id="changeday" on:click={offsetL}>&lt</button>
-  </DeviceDetector>
+  {#if !mobile}<button id="changeday" on:click={offsetL}>&lt</button>{/if}
   <div class="boing">
     {#if tt[dateString] != undefined}
       <br/>
-      {dateString}<br/><br/>
+      {dateString}<br/><em>{arrayDay[held+offset]}</em><br/><br/>
+      {#if mobile}
+        <button id="changedaymobile" on:click={offsetL}>&lt</button>
+        <button id="changedaymobile" on:click={offsetR}>&gt</button><br/><br/>
+      {/if}
       TODAY IS
       {#if tt[dateString].day == "B"}
           A
@@ -96,25 +100,17 @@
         <lg><b>{tt[dateString].TT}</b></lg><br/>
       {/if}
       {:else}
-      <DeviceDetector showInDevice="desktop">
-        {dateString}<br/>
-        <buffoonDesktop><b>There is no school buffoon</b></buffoonDesktop><br/>
-      </DeviceDetector>
-      <DeviceDetector showInDevice="mobile">
-        <mobile><b>There is no school buffoon</b></mobile><br/>
-      </DeviceDetector>
+      {dateString}<br/>
+      {#if mobile}
+        <button id="changedaymobile" on:click={offsetL}>&lt</button>
+        <button id="changedaymobile" on:click={offsetR}>&gt</button><br/><br/>
+      {/if}
+      <buffoonDesktop><b>There is no school buffoon</b></buffoonDesktop><br/>
       <img src="https://ironon.github.io/static/media/baboon.b4aa7231a1f98ba4fd1e.jpg" width="400px" alt="you buffoon"/><br/>
       <m>(You rn)</m>
     {/if}
   </div>
-  <DeviceDetector showInDevice="desktop">
-    <button id="changeday" on:click={offsetR}>&gt</button>
-  </DeviceDetector>
-  <DeviceDetector showInDevice="mobile">
-    <button id="changedaymobile" on:click={offsetR}>&gt</button>
-  </DeviceDetector>
+  {#if !mobile}<button id="changeday" on:click={offsetR}>&gt</button>{/if}
 </main>
-<DeviceDetector showInBrowser="chrome" showInDevice="desktop">
   <div class="box"></div>
-</DeviceDetector>
-<Footer/>
+<Footer mobile={mobile}/>

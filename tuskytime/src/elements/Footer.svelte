@@ -1,5 +1,5 @@
 <script>
-
+    export let mobile;
 </script>
 <style>
     .foot{
@@ -12,7 +12,12 @@
     p{
         color: #6882d3;
     }
+    .boot{
+        text-align: center;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 </style>
 <main>
-    <p class="foot">Not affiliated with LCPS or Tuscarora, A recreation of <a href="https://tuskytime.org">Tuskytime.org</a> by, Easton Snow in <em>Svelte</em></p>
+    <p class:foot={!mobile} class:boot={mobile}>Not affiliated with LCPS, An improved version of <a href="https://tuskytime.org">Tuskytime.org</a> by, Weston Schnee in <em>Svelte</em></p>
 </main>
