@@ -46,26 +46,28 @@
   let blocks = [ [{h:9,m:30},{h:10,m:53}], [{h:10,m:53},{h:11,m:36}], [{h:11,m:36},{h:13,m:36}],[{h:13,m:36},{h:14,m:57}],[{h:14,m:57},{h:16,m:18}]] 
   import { onMount } from 'svelte';
   let bloorkfr = "";
+  let inaccord = 0;
 	onMount(() => {
 		const interval = setInterval(() => {
       time = new Date();
       /* ALL BLORK 1 INSTANCES */
-      if(hours == blocks[0][0].h&&minutes>=blocks[0][0].m){ bloorkfr = "Block 1, until 10:53"}
-      if(hours == blocks[0][1].h&&minutes<=blocks[0][1].m){ bloorkfr = "Block 1, until 10:53"}
+      if(tt[dateString].day == "B"){inaccord = 4}
+      if(hours == blocks[0][0].h&&minutes>=blocks[0][0].m){ bloorkfr = "Block "+(1+inaccord)+", until 10:53"}
+      if(hours == blocks[0][1].h&&minutes<=blocks[0][1].m){ bloorkfr = "Block "+(1+inaccord)+", until 10:53"}
       /* ALL BLORK TT INSTANCES */
       if(hours == blocks[1][0].h&&minutes>=blocks[1][0].m){ bloorkfr = "Block TT, until 11:36"}
       if(hours == blocks[1][1].h&&minutes<=blocks[1][1].m){ bloorkfr = "Block TT, until 11:36"}
       /* ALL BLORK 2 INSTANCES */
-      if(hours == blocks[2][0].h&&minutes>=blocks[2][0].m){ bloorkfr = "Block 2, until 1:36"}
-      if(hours == blocks[2][0].h+1){ bloorkfr = "Block 2, until 1:36"}
-      if(hours == blocks[2][1].h&&minutes<=blocks[2][1].m){ bloorkfr = "Block 2, until 1:36"}
+      if(hours == blocks[2][0].h&&minutes>=blocks[2][0].m){ bloorkfr = "Block "+(2+inaccord)+", until 1:36"}
+      if(hours == blocks[2][0].h+1){ bloorkfr = "Block "+2+inaccord+", until 1:36"}
+      if(hours == blocks[2][1].h&&minutes<=blocks[2][1].m){ bloorkfr = "Block "+(2+inaccord)+", until 1:36"}
       /* ALL BLORK 3 INSTANCES */
-      if(hours == blocks[3][0].h&&minutes>=blocks[3][0].m){ bloorkfr = "Block 3, until 2:57"}
-      if(hours == blocks[3][1].h&&minutes<=blocks[3][1].m){ bloorkfr = "Block 3, until 2:57"}
+      if(hours == blocks[3][0].h&&minutes>=blocks[3][0].m){ bloorkfr = "Block "+(3+inaccord)+", until 2:57"}
+      if(hours == blocks[3][1].h&&minutes<=blocks[3][1].m){ bloorkfr = "Block "+(3+inaccord)+", until 2:57"}
       /* ALL BLORK 4 INSTANCES */
-      if(hours == blocks[4][0].h&&minutes>=blocks[4][0].m){ bloorkfr = "Block 4, until 4:18"}
-      if(hours == blocks[4][0].h+1){ bloorkfr = "Block 4, until 4:18"}
-      if(hours == blocks[4][1].h&&minutes<=blocks[4][1].m){ bloorkfr = "Block 4, until 4:18"}
+      if(hours == blocks[4][0].h&&minutes>=blocks[4][0].m){ bloorkfr = "Block "+(4+inaccord)+", until 4:18"}
+      if(hours == blocks[4][0].h+1){ bloorkfr = "Block "+(4+inaccord)+", until 4:18"}
+      if(hours == blocks[4][1].h&&minutes<=blocks[4][1].m){ bloorkfr = "Block "+(4+inaccord)+", until 4:18"}
       /* OUTSIDESCHOOL INSTANCES */
       if(hours <= blocks[0][0].h && minutes<=blocks[0][0].m){bloorkfr = "Schools Not Started Yet"}
       if(hours >= blocks[4][1].h && minutes>=blocks[4][1].m){bloorkfr = "Schools Out Dingus"}
