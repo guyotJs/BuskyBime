@@ -10,14 +10,26 @@
   function random(max){return Math.floor(Math.random() * max);}
   let ttt = random(5);
   let textActive = texts[ttt]; 
-  function offsetR(){offset += 1;date = new Date(Date.now() + offset * millisecondsInDay);dateString=getDate(date);}
-  function offsetL(){offset -= 1;date = new Date(Date.now() + offset * millisecondsInDay);dateString=getDate(date);}
+  function offsetR(){offset += 1;lelleR();date = new Date(Date.now() + offset * millisecondsInDay);dateString=getDate(date);}
+  function offsetL(){offset -= 1;lelleL();date = new Date(Date.now() + offset * millisecondsInDay);dateString=getDate(date);}
   function getDate(gotDate) {
     var formattedDate = ('' + gotDate.getDate()).slice(-2);
     var formattedMonth = ('' + (gotDate.getMonth() + 1)).slice(-2);
     return formattedMonth + '/' + formattedDate
   }
-
+  let datedateoffset=0;
+  function lelleL(){
+    datedateoffset--;
+    if(datedateoffset < 0){
+      datedateoffset = 6;
+    }
+  }
+  function lelleR(){
+    datedateoffset++;
+    if(datedateoffset > 6){
+      datedateoffset = 0;
+    }
+  }
   dateString = getDate(date)
   var arrayDay = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const dd= new Date();
@@ -79,7 +91,7 @@
   <div class="boing">
     {#if tt[dateString] != undefined}
       <br/>
-      {dateString}<br/><em>{arrayDay[held+offset]}</em><br/><br/>
+      {dateString}<br/><em>{#if arrayDay[held+datedateoffset]==undefined}{arrayDay[0]}{:else}{arrayDay[held+datedateoffset]}{/if}</em><br/><br/>
       {#if mobile}
         <button id="changedaymobile" on:click={offsetL}>&lt</button>
         <button id="changedaymobile" on:click={offsetR}>&gt</button><br/><br/>
@@ -101,6 +113,7 @@
       {/if}
       {:else}
       {dateString}<br/>
+      {#if arrayDay[held+datedateoffset]==undefined}{arrayDay[0]}{:else}{arrayDay[held+datedateoffset]}{/if}<br/>
       {#if mobile}
         <button id="changedaymobile" on:click={offsetL}>&lt</button>
         <button id="changedaymobile" on:click={offsetR}>&gt</button><br/><br/>
