@@ -38,6 +38,23 @@
   if(window.innerWidth < window.innerHeight){
     mobile = true;
   }
+	let time = new Date();
+  $: hours = time.getHours();
+	$: minutes = time.getMinutes();
+	$: seconds = time.getSeconds();
+  import { onMount } from 'svelte';
+	onMount(() => {
+		const interval = setInterval(() => {
+      time = new Date();
+    }, 1000);
+		return () => {
+			clearInterval(interval);
+		}; 
+	});
+  let blocks = [ [{h:"9",m:"30"},{h:"10",m:"53"}], [{h:"10",m:"53"},{h:"11",m:"36"}], [{h:"11",m:"36"},{h:"13",m:"36"}],[{h:"13",m:"36"},{h:"14",m:"57"}],[{h:"14",m:"57"},{h:"16",m:"18"}]] 
+  if(blocks){
+
+  }
 </script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
