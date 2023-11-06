@@ -42,19 +42,37 @@
   $: hours = time.getHours();
 	$: minutes = time.getMinutes();
 	$: seconds = time.getSeconds();
+  let blocks = [ [{h:9,m:30},{h:10,m:53}], [{h:10,m:53},{h:11,m:36}], [{h:11,m:36},{h:13,m:36}],[{h:13,m:36},{h:14,m:57}],[{h:14,m:57},{h:16,m:18}]] 
   import { onMount } from 'svelte';
+  let bloorkfr = "";
 	onMount(() => {
 		const interval = setInterval(() => {
       time = new Date();
+      /* ALL BLORK 1 INSTANCES */
+      if(hours == blocks[0][0].h&&minutes>=blocks[0][0].m){ bloorkfr = "Block 1"}
+      if(hours == blocks[0][1].h&&minutes<=blocks[0][1].m){ bloorkfr = "Block 1"}
+      /* ALL BLORK TT INSTANCES */
+      if(hours == blocks[1][0].h&&minutes>=blocks[1][0].m){ bloorkfr = "Block TT"}
+      if(hours == blocks[1][1].h&&minutes<=blocks[1][1].m){ bloorkfr = "Block TT"}
+      /* ALL BLORK 2 INSTANCES */
+      if(hours == blocks[2][0].h&&minutes>=blocks[2][0].m){ bloorkfr = "Block 2"}
+      if(hours == blocks[2][0].h+1&&minutes>=blocks[2][0].m){ bloorkfr = "Block 2"}
+      if(hours == blocks[2][1].h&&minutes<=blocks[2][1].m){ bloorkfr = "Block 2"}
+      /* ALL BLORK 3 INSTANCES */
+      if(hours == blocks[3][0].h&&minutes>=blocks[3][0].m){ bloorkfr = "Block 3"}
+      if(hours == blocks[3][1].h&&minutes<=blocks[3][1].m){ bloorkfr = "Block 3"}
+      /* ALL BLORK 4 INSTANCES */
+      if(hours == blocks[4][0].h&&minutes>=blocks[4][0].m){ bloorkfr = "Block 4"}
+      if(hours == blocks[4][1].h&&minutes<=blocks[4][1].m){ bloorkfr = "Block 4"}
+      /* OUTSIDESCHOOL INSTANCES */
+      if(hours <= blocks[0][0].h && minutes<=blocks[0][0].m){bloorkfr = "Schools Not Started Yet"}
+      if(hours >= blocks[4][1].h && minutes>=blocks[4][1].m){bloorkfr = "Schools Out Dingus"}
+      
     }, 1000);
 		return () => {
 			clearInterval(interval);
 		}; 
 	});
-  let blocks = [ [{h:"9",m:"30"},{h:"10",m:"53"}], [{h:"10",m:"53"},{h:"11",m:"36"}], [{h:"11",m:"36"},{h:"13",m:"36"}],[{h:"13",m:"36"},{h:"14",m:"57"}],[{h:"14",m:"57"},{h:"16",m:"18"}]] 
-  if(blocks){
-
-  }
 </script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
@@ -128,6 +146,7 @@
         {:else}
         <lg><b>{tt[dateString].TT}</b></lg><br/>
       {/if}
+      {bloorkfr}
       {:else}
       {dateString}<br/>
       {#if arrayDay[held+datedateoffset]==undefined}{arrayDay[0]}{:else}{arrayDay[held+datedateoffset]}{/if}<br/>
