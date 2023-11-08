@@ -150,7 +150,7 @@
         {:else}
         <lg><b>{tt[dateString].TT}</b></lg><br/>
       {/if}
-      {#if dateString == ogdatefrfrfr}{bloorkfr}{/if}
+      {#if dateString == ogdatefrfrfr}<br/>{bloorkfr}{/if}
       {:else}
       {dateString}<br/>
       {#if arrayDay[held+datedateoffset]==undefined}{arrayDay[0]}{:else}{arrayDay[held+datedateoffset]}{/if}<br/>
