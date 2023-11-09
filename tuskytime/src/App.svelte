@@ -77,8 +77,31 @@
 			clearInterval(interval);
 		}; 
 	});
+
+  // For the Calender
+  let months = ['January','Febuary','March','April','May','June','July','August','September','October','November','December']
+  let monthNum = [31,28,31,30,31,30,31,31,30,31,30,31]
+  let active = false;
+  let dateCAL = new Date();
+  let day = dateCAL.getDate();
+  let month = dateCAL.getMonth();
+  let year = dateCAL.getFullYear();
+  function toggle(){
+    if(active){active = false;}
+    else{active = true;}
+  }
+  function prev(){month --; if(month < 0){year --; month = 11}}
+  function post(){month ++; if(month > 11){year ++; month = 0}}
+  function select(input){
+    day = input;
+    dateString = compileTT();
+  }
+  function compileTT(){
+    return (month+1)+'/'+day
+  }
 </script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <style>
   .box{
     width:0.1px;
@@ -94,16 +117,17 @@
     text-align: center;
     margin-top: 50px;
   }
-  lg{font-size:100px;}
+  lg{font-size:80px;}
   m{font-size:large;}
   advise{font-size: 70px;}
   mobile{font-size: 50px;}
   buffoonDesktop{font-size: 70px;}
   #changeday {
+    border-radius: 5px;
     height: 3rem;
     width: 3rem;
     background-color: var(--lighter-main);
-    box-shadow: 0rem 0.3rem;
+    box-shadow: 0rem 0.3rem ;
     color: var(--main);
     font-size: 1.5rem;
     align-self: flex-start;
@@ -150,7 +174,29 @@
         {:else}
         <lg><b>{tt[dateString].TT}</b></lg><br/>
       {/if}
-      {#if dateString == ogdatefrfrfr}<br/>{bloorkfr}{/if}
+      {#if dateString == ogdatefrfrfr}<br/>{bloorkfr}{/if}<br/>
+      <!-- CALENDER -->
+      <div class="custom-date">
+        <div class="dates" class:active={active}>
+          <div class="month">
+            <div class="arrows prev" on:click={prev}>&lt;</div>
+            <div class="mth">{months[month]+ ' ' + year}</div>
+            <div class="arrows next" on:click={post}>&gt;</div>
+          </div>
+          <div class="days">
+            {#each Array(monthNum[month]) as _, i}
+                {#if day <= 9}
+                  <div class="day {year+"-"+(month+1)+"-0"+(i+1) == dateString ? 'daySelect' : ''}" on:click={() => select(i+1)}>{(i+1).toString()}</div>
+                  {:else}
+                  <div class="day {year+"-"+(month+1)+"-"+(i+1) == dateString ? 'daySelect' : ''}" on:click={() => select(i+1)}>{(i+1).toString()}</div>
+                {/if}
+            {/each}
+          </div>
+        </div>  
+        <div class="selected"  on:click={toggle}>
+          &nbsp;<i class="fa fa-calendar" style="font-size:20px"></i>&nbsp;{dateString.replace(/-/g,'/')}<span></span>
+        </div>  
+      </div>
       {:else}
       {dateString}<br/>
       {#if arrayDay[held+datedateoffset]==undefined}{arrayDay[0]}{:else}{arrayDay[held+datedateoffset]}{/if}<br/>

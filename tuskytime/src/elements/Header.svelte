@@ -5,8 +5,8 @@
     .bg{
         background-color: #6882d3;
         text-align: center;
-        padding: 0px;
-        border-bottom: 10px solid #25408f;
+        padding:10px;
+        /* border-bottom: 10px solid #25408f; */
         font-size:43px;
         font-family: serif!important;
     }
