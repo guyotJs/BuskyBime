@@ -20,7 +20,7 @@
 .custom-date .dates{
     display: none;
     position: absolute;
-    top: 100%;
+    top: -700%;
     left: 0;
     right: 0;
 
