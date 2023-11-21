@@ -11,6 +11,7 @@
   let ttt = random(5);
   let oldday=date.getDate()
   let oldmonth = date.getMonth()+1;
+  let dsus;
   let oldyear="2023"
   let textActive = texts[ttt]; 
   function daysInMonth (month, year) {
@@ -29,9 +30,11 @@
     else{
       var datee = new Date(`${oldmonth}/${oldday}/${oldyear}`);
     }
+    // alert(datee)
     return datee.toLocaleDateString(locale, { weekday: 'long' });        
   }
-  function offsetR(){oldday+=1;dateString=getDate();
+  dsus=getDayName("en-US");
+  function offsetR(){oldday+=1;dateString=getDate();dsus=getDayName("en-US");
     if(oldday > daysInMonth(oldmonth,2023)){
       oldday = 1
       oldmonth++;
@@ -43,7 +46,7 @@
       dateString=getDate();
     }
   }
-  function offsetL(){oldday-=1;dateString=getDate();
+  function offsetL(){oldday-=1;dateString=getDate();dsus=getDayName("en-US");
     if(oldday > daysInMonth(oldmonth,2023)){
       oldday = 1
       oldmonth++;
@@ -78,6 +81,7 @@
   let inaccord = 0;
 	onMount(() => {
 		const interval = setInterval(() => {
+      dsus=getDayName("en-US");
       time = new Date();
       /* ALL BLORK 1 INSTANCES */
       if(tt[dateString].day == "B"){inaccord = 4}
@@ -122,10 +126,12 @@
   function prev(){month --; if(month < 0){year --; month = 11}}
   function post(){month ++; if(month > 11){year ++; month = 0}}
   function select(input){
+    dsus=getDayName("en-US");
     day = input;
     dateString = compileTT();
   }
   function compileTT(){
+    dsus=getDayName("en-US");
     oldmonth=month+1;
     oldday =day;
     if(oldmonth == 0||oldmonth == 1||oldmonth == 2||oldmonth == 3||oldmonth == 4||oldmonth == 5){oldyear="2024"}
@@ -186,7 +192,7 @@
   <div class="boing">
     {#if tt[dateString] != undefined}
       <br/>
-      {dateString}<br/><em>{getDayName("en-US")}</em><br/><br/>
+      {dateString}<br/><em>{dsus}</em><br/><br/>
       {#if mobile}
         <button id="changedaymobile" on:click={offsetL}>&lt</button>
         <button id="changedaymobile" on:click={offsetR}>&gt</button><br/><br/>
@@ -230,7 +236,7 @@
         </div>  
       </div>
       {:else}
-      {dateString}<br/>
+      {dateString}<br/><em>{dsus}</em>
       <br/>
       {#if mobile}
         <button id="changedaymobile" on:click={offsetL}>&lt</button>
