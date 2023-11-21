@@ -9,28 +9,57 @@
   let texts = ['busky bime','you wasted electricity for me to tell you it\'s wednesday','duhh','hmm it\'s wednesday i wonder what TT it is','bro it\'s wednesday']
   function random(max){return Math.floor(Math.random() * max);}
   let ttt = random(5);
+  let oldday=date.getDate()
+  let oldmonth = date.getMonth()+1;
+  let oldyear="2023"
   let textActive = texts[ttt]; 
-  function offsetR(){offset += 1;lelleR();date = new Date(Date.now() + offset * millisecondsInDay);dateString=getDate(date);}
-  function offsetL(){offset -= 1;lelleL();date = new Date(Date.now() + offset * millisecondsInDay);dateString=getDate(date);}
-  function getDate(gotDate) {
-    var formattedDate = ('' + gotDate.getDate()).slice(-2);
-    var formattedMonth = ('' + (gotDate.getMonth() + 1)).slice(-2);
-    return formattedMonth + '/' + formattedDate
+  function daysInMonth (month, year) {
+    return new Date(year, month, 0).getDate();
   }
-  let datedateoffset=0;
-  function lelleL(){
-    datedateoffset--;
-    if(datedateoffset < 0){
-      datedateoffset = 6;
+  function getDayName(locale){
+    if(oldday<=9&&oldmonth<=9){
+      var datee = new Date(`0${oldmonth}/0${oldday}/${oldyear}`);
+    }
+    else if(oldmonth<=9){
+      var datee = new Date(`0${oldmonth}/${oldday}/${oldyear}`);
+    }
+    else if(oldday<=9){
+      var datee = new Date(`${oldmonth}/0${oldday}/${oldyear}`);
+    }
+    else{
+      var datee = new Date(`${oldmonth}/${oldday}/${oldyear}`);
+    }
+    return datee.toLocaleDateString(locale, { weekday: 'long' });        
+  }
+  function offsetR(){oldday+=1;dateString=getDate();
+    if(oldday > daysInMonth(oldmonth,2023)){
+      oldday = 1
+      oldmonth++;
+      dateString=getDate();
+    }
+    if(oldday < 1){
+      oldday = daysInMonth(oldmonth-1,2023)
+      oldmonth--;
+      dateString=getDate();
     }
   }
-  function lelleR(){
-    datedateoffset++;
-    if(datedateoffset > 6){
-      datedateoffset = 0;
+  function offsetL(){oldday-=1;dateString=getDate();
+    if(oldday > daysInMonth(oldmonth,2023)){
+      oldday = 1
+      oldmonth++;
+      dateString=getDate();
+    }
+    if(oldday < 1){
+      oldday = daysInMonth(oldmonth-1,2023)
+      oldmonth--;
+      dateString=getDate();
     }
   }
-  dateString = getDate(date)
+  function getDate() {
+    if(oldmonth == 0||oldmonth == 1||oldmonth == 2||oldmonth == 3||oldmonth == 4||oldmonth == 5){oldyear="2024"}
+    return oldmonth + '/' + oldday
+  }
+  dateString = getDate()
   let ogdatefrfrfr = dateString;
   var arrayDay = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const dd= new Date();
@@ -97,6 +126,9 @@
     dateString = compileTT();
   }
   function compileTT(){
+    oldmonth=month+1;
+    oldday =day;
+    if(oldmonth == 0||oldmonth == 1||oldmonth == 2||oldmonth == 3||oldmonth == 4||oldmonth == 5){oldyear="2024"}
     return (month+1)+'/'+day
   }
 </script>
@@ -154,7 +186,7 @@
   <div class="boing">
     {#if tt[dateString] != undefined}
       <br/>
-      {dateString}<br/><em>{#if arrayDay[held+datedateoffset]==undefined}{arrayDay[0]}{:else}{arrayDay[held+datedateoffset]}{/if}</em><br/><br/>
+      {dateString}<br/><em>{getDayName("en-US")}</em><br/><br/>
       {#if mobile}
         <button id="changedaymobile" on:click={offsetL}>&lt</button>
         <button id="changedaymobile" on:click={offsetR}>&gt</button><br/><br/>
@@ -199,7 +231,7 @@
       </div>
       {:else}
       {dateString}<br/>
-      {#if arrayDay[held+datedateoffset]==undefined}{arrayDay[0]}{:else}{arrayDay[held+datedateoffset]}{/if}<br/>
+      <br/>
       {#if mobile}
         <button id="changedaymobile" on:click={offsetL}>&lt</button>
         <button id="changedaymobile" on:click={offsetR}>&gt</button><br/><br/>
