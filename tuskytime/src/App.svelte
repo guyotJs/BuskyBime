@@ -6,9 +6,9 @@
   let offset = 0;
   const millisecondsInDay = 8.64e+7
   let date = new Date(Date.now() + offset * millisecondsInDay)
-  let texts = ['busky bime','you wasted electricity for me to tell you it\'s wednesday','duhh','hmm it\'s wednesday i wonder what TT it is','bro it\'s wednesday']
+  let texts = ['busky bime','you wasted electricity for me to tell you it\'s wednesday','duhh','hmm it\'s wednesday i wonder what TT it is','bro it\'s wednesday', 'erhm ackhcually','💀💀💀']
   function random(max){return Math.floor(Math.random() * max);}
-  let ttt = random(5);
+  let ttt = random(7);
   let oldday=date.getDate()
   let oldmonth = date.getMonth()+1;
   let dsus;
