@@ -13,6 +13,6 @@
 </style>
 <main>
     <div class="bg w3-row">
-        <img src="https://tuskytime.org/assets/tuskylogo.png" alt="oy" width="80px"/><b>BUSKY BIME</b>
+        <img src="https://tuskytime.org/tuskylogo.png" alt="oy" width="80px"/><b>BUSKY BIME</b>
     </div>
 </main>
