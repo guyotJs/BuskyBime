@@ -17,23 +17,13 @@
   function daysInMonth (month, year) {
     return new Date(year, month, 0).getDate();
   }
-  function getDayName(locale){
-    if(oldday<=9&&oldmonth<=9){
-      var datee = new Date(`0${oldmonth}/0${oldday}/${oldyear}`);
-    }
-    else if(oldmonth<=9){
-      var datee = new Date(`0${oldmonth}/${oldday}/${oldyear}`);
-    }
-    else if(oldday<=9){
-      var datee = new Date(`${oldmonth}/0${oldday}/${oldyear}`);
-    }
-    else{
-      var datee = new Date(`${oldmonth}/${oldday}/${oldyear}`);
-    }
-    // alert(datee)
-    return datee.toLocaleDateString(locale, { weekday: 'long' });        
+  function getDayName(){
+    let weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    let d = new Date();
+    let day = weekday[d.getDay()];  
+    return day;     
   }
-  dsus=getDayName("en-US");
+  dsus=getDayName();
   function offsetR(){oldday+=1;dateString=getDate();dsus=getDayName("en-US");
     if(oldday > daysInMonth(oldmonth,2023)){
       oldday = 1
@@ -81,7 +71,7 @@
   let inaccord = 0;
 	onMount(() => {
 		const interval = setInterval(() => {
-      dsus=getDayName("en-US");
+      dsus=getDayName();
       time = new Date();
       /* ALL BLORK 1 INSTANCES */
       if(tt[dateString].day == "B"){inaccord = 4}
@@ -126,12 +116,12 @@
   function prev(){month --; if(month < 0){year --; month = 11}}
   function post(){month ++; if(month > 11){year ++; month = 0}}
   function select(input){
-    dsus=getDayName("en-US");
+    dsus=getDayName();
     day = input;
     dateString = compileTT();
   }
   function compileTT(){
-    dsus=getDayName("en-US");
+    dsus=getDayName();
     oldmonth=month+1;
     oldday =day;
     if(oldmonth == 0||oldmonth == 1||oldmonth == 2||oldmonth == 3||oldmonth == 4||oldmonth == 5){oldyear="2024"}
@@ -192,7 +182,7 @@
   <div class="boing">
     {#if tt[dateString] != undefined}
       <br/>
-      {dateString}<br/><em>{dsus}</em><br/><br/>
+      {dateString}<br/><em>Today is {dsus}</em><br/><br/>
       {#if mobile}
         <button id="changedaymobile" on:click={offsetL}>&lt</button>
         <button id="changedaymobile" on:click={offsetR}>&gt</button><br/><br/>
@@ -236,7 +226,7 @@
         </div>  
       </div>
       {:else}
-      {dateString}<br/><em>{dsus}</em>
+      {dateString}<br/><em>Today is {dsus}</em>
       <br/>
       {#if mobile}
         <button id="changedaymobile" on:click={offsetL}>&lt</button>
